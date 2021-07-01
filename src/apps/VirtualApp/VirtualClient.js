@@ -2611,6 +2611,7 @@ class VirtualClient extends Component {
             audioModeChange={this.otherCamsMuteToggle}
             isAudioMode={muteOtherCams}
             audios={audios.audios}
+            cammuted={cammuted}
           />
         )}
         {user && !isMobile && !notApproved && isUseNewDesign && !Boolean(room) && (

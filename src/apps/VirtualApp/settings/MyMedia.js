@@ -33,7 +33,7 @@ const MyMedia = (props) => {
         controls={false}
         muted={true}
         playsInline={true}
-        style={{width: "100%"}}
+        style={{height: "229px"}}
       />
     </Box>
   );

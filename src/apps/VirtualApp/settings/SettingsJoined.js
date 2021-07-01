@@ -62,7 +62,17 @@ const SettingsJoined = (props) => {
   const [subtitleWQ, setSubtitleWQ] = useState(localStorage.getItem(WQ_LANG));
   const [subtitleMQTT, setSubtitleMQTT] = useState(localStorage.getItem(SUBTITLE_LANG));
 
-  const {audio, video, audios = 2, isOpen = false, closeModal, userDisplay, audioModeChange, isAudioMode} = props;
+  const {
+    audio,
+    video,
+    audios = 2,
+    isOpen = false,
+    closeModal,
+    userDisplay,
+    audioModeChange,
+    isAudioMode,
+    cammuted,
+  } = props;
 
   const audio_device = audio?.audio_device || audio?.devices[0]?.deviceId;
   const audioLabel = audio?.devices.find((d) => d.deviceId === audio_device)?.label;
@@ -209,7 +219,7 @@ const SettingsJoined = (props) => {
               </Tooltip>
             </Grid>
             <Grid item xs={12}>
-              <MyMedia video={{stream: video.stream}} />
+              <MyMedia video={{stream: video.stream}} cammuted={cammuted} />
             </Grid>
           </Grid>
         </Grid>
@@ -289,11 +299,13 @@ const SettingsJoined = (props) => {
 };
 
 export default memo(SettingsJoined, (prevProps, nextProps) => {
-  const {videoLength, isOpen, audios, userDisplay} = prevProps;
+  const {videoLength, isOpen, audios, userDisplay, cammuted, isAudioMode} = prevProps;
   return (
     videoLength === nextProps.videoLength &&
     userDisplay === nextProps.userDisplay &&
     isOpen === nextProps.isOpen &&
+    cammuted === nextProps.cammuted &&
+    isAudioMode === nextProps.isAudioMode &&
     audios === nextProps.audios
   );
 });
